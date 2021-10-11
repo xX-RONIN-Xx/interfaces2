@@ -1,0 +1,59 @@
+#canvas {
+    border: solid black 1px;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+.botones {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+h3,#cuatro, #cinco, #seis, #siete, #inicio, #partida, #tipo{
+    margin: 5px;
+}
+
+img{
+    border-radius: 50%;
+}
+
+.casino{
+    background-image: url(../img/fichaAzul.png);
+   background-repeat: no-repeat;
+    display: block;
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+   }
+   
+   .cartas{
+      background-image: url(../img/cartas.png);
+      background-repeat: no-repeat; 
+     display: block;
+     width: 62px;
+     height: 62px;
+     border-radius: 50%;
+   }
+
+   .color{
+    background-image: url(../img/fichaVerde.png);
+    background-repeat: no-repeat; 
+   display: block;
+   width: 62px;
+   height: 60px;
+   border-radius: 50%;
+ }
+
+   .swal-footer {
+     text-align: center; 
+    padding-top: 13px;
+    margin-top: 13px;
+    padding: 13px 16px;
+    border-radius: inherit;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+} 

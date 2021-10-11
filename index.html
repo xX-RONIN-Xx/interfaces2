@@ -1,20 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   
-    <script src="Figure.js">  </script>
-    <script src="Circle.js">  </script>
-    <script src="main.js">  </script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>4 en Linea</title>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<link rel="stylesheet" href="css/style.css">
+		
+		
+	</head>
+	<body>
+		<div>
+			<h1>TP N°2</h1>
+			<h3>Integrantes:</h3>
+			<h3>Benítez, José Mauricio,</h3>
+		
+			<div class="botones">
+				<button type="button" id="inicio" value="iniciarPartida">Iniciar Partida</button>
+				<button type="button" id="partida" value="Nueva Partida">Nuena Partida</button>
+				<hr>
+				<h3>Seleccione Tablero</h3>
+				<button id="cuatro" type="button" value="7" onclick="cargarParametros(value);">4 en línea</button>
+				<button id="cinco" type="button" value="8" onclick="cargarParametros(value);">5 en línea</button>
+				<button id="seis" type="button" value="9" onclick="cargarParametros(value);">6 en línea</button>
+				<button id="siete" type="button" value="10" onclick="cargarParametros(value);">7 en línea</button>
+			</div>
+			<hr>
+			<div>
 
-</head>
-<body>
-    
-    <canvas id="myCanvas" width="600" height="400" style="border:1px solid #d3d3d3;">
-    </canvas> 
-   
-</body>
+				<button type="button" id="tipo" onclick="mostrarBotones();">Seleccione tipo de Fichas</button>
+				
+				
+			</div>
+			
+		</div>
+		<div>
+			<canvas id="canvas" width="800" height="500"> </canvas>
+		</div>
+        
+
+		<script src="sweetAlert.js"></script>
+        <script src="Ficha.js"></script>
+        <script src="Jugador.js"></script>
+        <script src="Tablero.js"></script>
+		<script src="Casillero.js"></script>
+        <script src="main.js"></script>
+		<script src="logica.js"></script>
+
+      
+	</body>
+
 </html>
