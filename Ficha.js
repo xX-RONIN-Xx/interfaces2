@@ -1,21 +1,23 @@
 class Ficha {
 
-    constructor(posX, posY, radius, ctx, source) {
+    constructor(posX, posY, radius, ctx, source,jugador) {
         this.ctx = ctx;
         this.posX = posX;
         this.posY = posY;
         this.radius = radius;
         this.imgReady = false;
         this.source=source;
+        this.jugador=jugador;
     }
 
 
-    cargarImagen(source) {
+    cargarImagen(source,jugador) {
         this.ctx.beginPath();
         this.ctx.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2);
         this.ctx.fill();
         this.ctx.closePath();
         this.source=source;
+        this.jugador=jugador;
         const img = new Image();
         img.src = source;
         if (!this.imgReady) {
@@ -51,5 +53,11 @@ class Ficha {
     }
     getPosY() {
         return this.posY;
+    }
+    getSource() {
+        return this.source;
+    }
+    getJugador(){
+        return this.jugador;
     }
 }

@@ -19,6 +19,8 @@ let tamanioCelda=3*radius;
 let textX = 50;
 let textY = 50;
 let matriz = [];
+let jugador1='ROCIO';
+let jugador2='MAURICIO';
 
 canvas.width = canvasW;
 canvas.height = canvasH;
@@ -185,12 +187,18 @@ function onmouseup(e) {
     isMouseDown = false;
     let col;
     let iLibre;
+    let ganador;
+    let nombreGanador;
     if (lastClickedFicha != null) {
         if (((e.layerX > ((canvasW / 2) - (tableroW / 2))) && (e.layerX < ((canvasW / 2) + (tableroW / 2))))&&e.layerY< ((canvasH / 2) - (tableroH / 2)-radius) ){
             col=obtenerColumna(casW,tamanioCelda,e.layerX);
-         
            iLibre= buscarPoslibreCol(col,casW);
            actualizarMatriz(iLibre,col,lastClickedFicha,casW,radius);
+           ganador=verificarGanador(iLibre,col,lastClickedFicha);
+           if(ganador!=null){
+            nombreGanador= document.getElementById('ganador').innerHTML=ganador.getJugador();
+            drawGanador(nombreGanador);
+           }
         }else{alert('Soltar la ficha desde arriba del tablero')}
     }
 }
@@ -228,12 +236,12 @@ function drawFigure(casW, cant, imagen1, imagen2) {
     drawTxT();
     for (let i = cant-1; i >=0; i--) {
 
-        fichas[i].cargarImagen(imagen1);
-        fichas2[i].cargarImagen(imagen2);
+        fichas[i].cargarImagen(imagen1,jugador1);
+        fichas2[i].cargarImagen(imagen2,jugador2);
     }
     
 }
-
+//carga los parametros necesarios para dibujar el tablero
 function mostrarTablero(casW){
  
     tableroW = radius * (3 * casW);
@@ -262,6 +270,7 @@ function clearCanvas() {
 
 canvas.addEventListener('mousemove', onmousemove, false);
 function onmousemove(e) {
+    
     if (isMouseDown && (lastClickedFicha != null)) {
         lastClickedFicha.setPosition(e.layerX, e.layerY);
         drawFigure(casW, cant, imagen1, imagen2);
@@ -270,7 +279,31 @@ function onmousemove(e) {
 }
 /**************************************************** */
 
+function drawGanador(nombre){
+    //ctx.fillRect(90, 90, 800, 750);
+    ctx.font="100pt Georgia";
+   // ctx.strokeStyle="red";
+    ctx.fillStyle="black";
+    ctx.lineWidth = 5;
+    //ctx.strokeText("Ganador", 250, 350 ,300);
+    ctx.fillText('GANADOR: '+nombre, 250, 150 ,500);
 
+    
+    // Create gradient
+    
+    var gradient = ctx.createLinearGradient(0, 0, canvasW, 0);
+    gradient.addColorStop("0", "magenta");
+    gradient.addColorStop("0.5", "blue");
+    gradient.addColorStop("1.0", "red");
+    
+    // Fill with gradient
+    ctx.strokeStyle = gradient;
+    ctx.strokeText('GANADOR: '+nombre, 250, 150 ,500);
+    
+
+
+
+}
 
 
 
