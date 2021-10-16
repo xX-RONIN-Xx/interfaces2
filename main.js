@@ -17,6 +17,7 @@ let isMouseDown = false;
 let tamanioCelda = 3 * radius;
 let textX = 50;
 let textY = 50;
+let turno = "jugador1";
 let matriz = [];
 let jugador1 = document.querySelector('#jugador1').innerHTML;//"Player 1";//document.querySelector('#jugador1').innerHTML;
 let jugador2 = document.querySelector('#jugador2').innerHTML;//"Player 2";
@@ -53,7 +54,7 @@ tipo.addEventListener('click', function () {
     })
 });
 botTablero.forEach(element => {
-    element.addEventListener('click', function () {inicio.disabled = false })
+    element.addEventListener('click', function () { inicio.disabled = false })
 });
 
 inicio.addEventListener('click', function () {
@@ -63,6 +64,10 @@ inicio.addEventListener('click', function () {
     });
     document.querySelector('#tipo').disabled = true;
     inicio.disabled = true;
+    for(let i=0;i<fichas.length;i++){
+        fichas[i].setColocada(false);
+        fichas2[i].setColocada(false);
+    }
 })
 
 
@@ -145,7 +150,7 @@ function borrarPartida() {
                     clearCanvas();
                     drawTipo();
                     drawTablero();
-                    partida.disabled=true;
+                    partida.disabled = true;
 
                 })
         })
@@ -163,7 +168,7 @@ function drawTablero() {
 }
 drawTablero();
 
-document.querySelector('#tipo').addEventListener('click',mostrarBotones)
+document.querySelector('#tipo').addEventListener('click', mostrarBotones)
 function mostrarBotones() {
 
     swal({
@@ -255,16 +260,27 @@ function findClickedFicha(x, y) {
 canvas.addEventListener('mousedown', onmousedown, false);
 function onmousedown(e) {
     isMouseDown = true;
-    if (lastClickedFicha != null) {//creo que el primer if esta demas
+    if (lastClickedFicha != null) {
         lastClickedFicha = null;
     }
     let clickFig = findClickedFicha(e.layerX, e.layerY);
-    if (clickFig != null) {
-        lastClickedFicha = clickFig;
+    if ((clickFig != null)&&!clickFig.getColocada()) {
+        if (turno == clickFig.getTurno()) {
+            lastClickedFicha = clickFig;
+            cambiarTurno();
+
+        }
     }
 }
 
-
+function cambiarTurno() {
+    if (turno == "jugador1") {
+        turno = "jugador2";
+    }
+    else {
+        turno = "jugador1";
+    }
+}
 
 canvas.addEventListener('mouseup', onmouseup, false);
 function onmouseup(e) {
@@ -275,6 +291,7 @@ function onmouseup(e) {
     let nombreGanador;
     if (lastClickedFicha != null) {
         if (((e.layerX > ((canvasW / 2) - (tableroW / 2))) && (e.layerX < ((canvasW / 2) + (tableroW / 2)))) && e.layerY < ((canvasH / 2) - (tableroH / 2) - radius)) {
+            lastClickedFicha.setColocada(true);
             col = obtenerColumna(casW, tamanioCelda, e.layerX);
             iLibre = buscarPoslibreCol(col, casW);
             actualizarMatriz(iLibre, col, lastClickedFicha, casW, radius);
@@ -283,7 +300,11 @@ function onmouseup(e) {
                 nombreGanador = document.getElementById('ganador').innerHTML = ganador.getJugador();
                 drawGanador(nombreGanador);
             }
-        } else { alert('Soltar la ficha desde arriba del tablero') }
+        } else { 
+            alert('Soltar la ficha desde arriba del tablero')
+            cambiarTurno();
+        }
+
     }
 }
 
@@ -299,8 +320,8 @@ function crearFichas(cant) {
     let ficha2;
 
     for (let i = 0; i < cant; i++) {
-        ficha = new Ficha(posX, posY + (i * 13) + 200, radius, ctx, imagen1, jugador1);
-        ficha2 = new Ficha(posX + 900, posY + (i * 13) + 200, radius, ctx);
+        ficha = new Ficha(posX, posY + (i * 13) + 200, radius, ctx, imagen1, jugador1, "jugador1");
+        ficha2 = new Ficha(posX + 900, posY + (i * 13) + 200, radius, ctx,imagen2,jugador2,"jugador2");
         fichas.push(ficha);
         fichas2.push(ficha2);
     }

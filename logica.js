@@ -67,18 +67,18 @@ function verificarGanador(fil, col, uFicha) {
         return uFicha;
     }
 
-    if (((contadorNoreste(fil, col, tamMatFila, uFicha) + (contadorSuroeste(fil, col,tamMatCol, uFicha)) + 1 )  >= 4)) {
+    if (((contadorNoreste(fil, col, tamMatFila, uFicha) + (contadorSuroeste(fil, col, tamMatCol, uFicha)) + 1) >= 4)) {
         ganador = true;
         drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
 
-    if ((contadorEste(fil, col,tamMatCol,tamMatFila, uFicha)+ contadorNoroeste(fil, col, uFicha)+1)  >= 4) {
+    if ((contadorEste(fil, col, tamMatCol, tamMatFila, uFicha) + contadorNoroeste(fil, col, uFicha) + 1) >= 4) {
         ganador = true;
         drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
-    
+
 }
 
 function contadorOeste(fil, col, uFicha) {
@@ -104,7 +104,7 @@ function contadorEste(fil, col, maxFila, uFicha) {
 }
 
 
-function contadorNoreste(fil, col,maxFila, uFicha) {
+function contadorNoreste(fil, col, maxFila, uFicha) {
     fil = fil - 1;
     col = col + 1;
     let contador = 0;
@@ -116,69 +116,73 @@ function contadorNoreste(fil, col,maxFila, uFicha) {
     return contador;
 }
 
-    function contadorSur(fil, col, maxCol, uFicha) {
-        fil = fil + 1;
-        let contador = 0;
-        while (fil < maxCol && (matriz[fil][col] != 'vacio') && (matriz[fil][col].getSource() == uFicha.getSource())) {
-            fil += 1;
-            contador += 1;
-        }
-        return contador;
+function contadorSur(fil, col, maxCol, uFicha) {
+    fil = fil + 1;
+    let contador = 0;
+    while (fil < maxCol && (matriz[fil][col] != 'vacio') && (matriz[fil][col].getSource() == uFicha.getSource())) {
+        fil += 1;
+        contador += 1;
     }
+    return contador;
+}
 
-    function contadorSuroeste(fil, col,maxCol, uFicha) {
-        fil = fil + 1;
-        col = col - 1;
-        let contador = 0;
-        while ((fil < maxCol) && (col >=0) && (matriz[fil][col] != 'vacio') && (matriz[fil][col].getSource() == uFicha.getSource())) {
-            fil += 1;
-            col -= 1;
-            contador += 1;
-        }
-        return contador;
+function contadorSuroeste(fil, col, maxCol, uFicha) {
+    fil = fil + 1;
+    col = col - 1;
+    let contador = 0;
+    while ((fil < maxCol) && (col >= 0) && (matriz[fil][col] != 'vacio') && (matriz[fil][col].getSource() == uFicha.getSource())) {
+        fil += 1;
+        col -= 1;
+        contador += 1;
     }
+    return contador;
+}
 
-    
-    function contadorEste(fil, col,maxCol,maxFila, uFicha) {
-        fil = fil + 1;
-        col = col + 1;
-        let contador = 0;
-        while ((fil < maxCol) && (col <maxFila) && (matriz[fil][col] != 'vacio') && (matriz[fil][col].getSource() == uFicha.getSource())) {
-            fil += 1;
-            col += 1;
-            contador += 1;
-        }
-        return contador;
+
+function contadorEste(fil, col, maxCol, maxFila, uFicha) {
+    fil = fil + 1;
+    col = col + 1;
+    let contador = 0;
+    while ((fil < maxCol) && (col < maxFila) && (matriz[fil][col] != 'vacio') && (matriz[fil][col].getSource() == uFicha.getSource())) {
+        fil += 1;
+        col += 1;
+        contador += 1;
     }
+    return contador;
+}
 
-    function contadorNoroeste(fil, col, uFicha) {
-        fil = fil - 1;
-        col = col - 1;
-        let contador = 0;
-        while ((fil >=0) && (col >=0) && (matriz[fil][col] != 'vacio') && (matriz[fil][col].getSource() == uFicha.getSource())) {
-            fil -= 1;
-            col -= 1;
-            contador += 1;
-        }
-        return contador;
+function contadorNoroeste(fil, col, uFicha) {
+    fil = fil - 1;
+    col = col - 1;
+    let contador = 0;
+    while ((fil >= 0) && (col >= 0) && (matriz[fil][col] != 'vacio') && (matriz[fil][col].getSource() == uFicha.getSource())) {
+        fil -= 1;
+        col -= 1;
+        contador += 1;
     }
+    return contador;
+}
 
 
 
 
 
-    inicio.addEventListener("click",iniciarPartida);
-function iniciarPartida(){
-
-    var timeleft = 9;
-let downloadTimer = setInterval(function(){
-  if(timeleft <= 0){
-    clearInterval(downloadTimer);
-    document.getElementById("countdown").innerHTML = "Finished";
-  } else {
-    document.getElementById("countdown").innerHTML = timeleft + "s tiempo restante del turno";
-  }
-  timeleft -= 1;
-}, 1000);
+inicio.addEventListener("click", iniciarPartida);
+function iniciarPartida() {
+turno="jugador1";
+    let timeleft = 300;
+    let downloadTimer = setInterval(function () {
+        if (timeleft <= 0) {
+            
+            document.getElementById("countdown").innerHTML = "Finished";
+            alert('programar el fin del juego')
+            clearInterval(downloadTimer);
+        } else {
+            document.getElementById("countdown").innerHTML = timeleft + "s tiempo restante del turno";
+        }
+        timeleft -= 1;
+    }, 1000);
 
 }
+
+

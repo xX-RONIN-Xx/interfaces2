@@ -1,6 +1,6 @@
 class Ficha {
 
-    constructor(posX, posY, radius, ctx, source,jugador) {
+    constructor(posX, posY, radius, ctx, source,jugador,turno) {
         this.ctx = ctx;
         this.posX = posX;
         this.posY = posY;
@@ -8,7 +8,8 @@ class Ficha {
         this.imgReady = false;
         this.source=source;
         this.jugador=jugador;
-        this.clickleable=true;
+        this.colocada=true;
+        this.turno=turno;
     }
 
 
@@ -60,5 +61,14 @@ class Ficha {
     }
     getJugador(){
         return this.jugador;
+    }
+    getTurno(){
+        return this.turno;
+    }
+    getColocada(){
+        return this.colocada;
+    }
+    setColocada(valor){
+        this.colocada=valor;
     }
 }
