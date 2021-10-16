@@ -6,14 +6,18 @@ body {
     display: flex;
     flex-direction: row;
 }
+.integrantes{
+    width: 500px;
+}
 
 .botones {
-    width: 50%;
+    width: 300px;
     display: flex;
+    justify-content: center;
     flex-direction: column;
 }
 
-h3,#cuatro, #cinco, #seis, #siete, #inicio, #partida, #tipo{
+h3,#cuatro, #cinco, #seis, #siete, #inicio, #partida, #tipo, #reset{
     margin: 5px;
 }
 

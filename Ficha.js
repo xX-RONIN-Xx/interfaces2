@@ -8,6 +8,7 @@ class Ficha {
         this.imgReady = false;
         this.source=source;
         this.jugador=jugador;
+        this.clickleable=true;
     }
 
 
