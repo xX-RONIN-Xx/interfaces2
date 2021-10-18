@@ -44,7 +44,7 @@ function buscarPoslibreCol(col, cantCasillerosw) {
 
 
 //guarda la ficha en la posicion libre encontrada
-function actualizarMatriz(fil, col, ficha, cantCasillerosw, radius) {
+function actualizarMatriz(fil, col, ficha, cantCasillerosw, radius,e) {
     matriz[fil][col] = ficha;
     let x = ((col + 1) * 3 - 1.5) * radius + ((canvasW / 2) - tableroW / 2);
     let y = ((fil + 1) * 3 - 1.5) * radius + ((canvasH / 2) - tableroH / 2);
@@ -58,24 +58,20 @@ function verificarGanador(fil, col, uFicha) {
 
     if ((contadorOeste(fil, col, uFicha) + contadorEste(fil, col, tamMatFila, uFicha) + 1) >= 4) {//mas 1 porque se tiene que contar a si misma
         ganador = true;
-        drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
     if ((contadorSur(fil, col, tamMatCol, uFicha) + 1) == 4) {
         ganador = true;
-        drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
 
     if (((contadorNoreste(fil, col, tamMatFila, uFicha) + (contadorSuroeste(fil, col, tamMatCol, uFicha)) + 1) >= 4)) {
         ganador = true;
-        drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
 
     if ((contadorEste(fil, col, tamMatCol, tamMatFila, uFicha) + contadorNoroeste(fil, col, uFicha) + 1) >= 4) {
         ganador = true;
-        drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
 
@@ -181,7 +177,7 @@ turno="jugador1";
             }
             clearInterval(downloadTimer);
         } else {
-            document.getElementById("countdown").innerHTML = timeleft + "segundos restantes de la partida.";
+            document.getElementById("countdown").innerHTML = timeleft + " segundos restantes de la partida.";
         }
         timeleft -= 1;
     }, 1000);

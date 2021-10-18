@@ -304,6 +304,8 @@ function onmouseup(e) {
             ganador = verificarGanador(iLibre, col, lastClickedFicha);
             if (ganador != null) {
                 nombreGanador = document.getElementById('ganador').innerHTML = ganador.getJugador();
+                countdown.hidden=true;
+                document.querySelector('#turno').hidden=true;
                 drawGanador(nombreGanador);
             }
 
@@ -315,7 +317,14 @@ function onmouseup(e) {
 
 
         } else {
-            alert('Soltar la ficha desde arriba del tablero')
+            swal({
+                title: "Incorrecto",
+                text: "Soltar la ficha desde arriba del tablero!",
+                icon: "warning",
+                button: true,
+              });
+            lastClickedFicha.setPosition(lastClickedFicha.homeX, lastClickedFicha.homeY);
+            drawFigure(casW, cant, imagen1, imagen2);
             cambiarTurno();
         }
 
@@ -330,12 +339,15 @@ let fichas2 = [];
 function crearFichas(cant) {
     let posX = 50;
     let posY = 50;
+    let homeX,homeY;
     let ficha;
     let ficha2;
 
     for (let i = 0; i < cant; i++) {
-        ficha = new Ficha(posX, posY + (i * 11) + 200, radius, ctx, imagen1, jugador1, "jugador1");
-        ficha2 = new Ficha(posX + 900, posY + (i * 11) + 200, radius, ctx, imagen2, jugador2, "jugador2");
+        homeX=posX;
+        homeY=posY + (i * 11) + 200;
+        ficha = new Ficha(homeX, homeY, posX, posY + (i * 11) + 200, radius, ctx, imagen1, jugador1, "jugador1");
+        ficha2 = new Ficha(homeX+900, homeY, posX + 900, posY + (i * 11) + 200, radius, ctx, imagen2, jugador2, "jugador2");
         fichas.push(ficha);
         fichas2.push(ficha2);
     }
