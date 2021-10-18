@@ -2,10 +2,13 @@
     border: solid black 1px;
 }
 
-body {
+.contenedor {
     display: flex;
     flex-direction: row;
+    background-color: rgb(33, 48, 37);
 }
+
+
 .integrantes{
     width: 500px;
 }
@@ -17,8 +20,46 @@ body {
     flex-direction: column;
 }
 
-h3,#cuatro, #cinco, #seis, #siete, #inicio, #partida, #tipo, #reset{
-    margin: 5px;
+.btn-primary{
+
+    background-color: turquoise !important;
+    color: rgb(0, 8, 8) !important;
+    font-size: 25px !important;
+    padding: 0px !important;
+}
+
+.btn-success{
+  
+    background-color:orange !important;
+    color: #000 !important;
+    font-size: 25px !important;
+    padding: 0px !important;
+
+}
+
+#countdown{
+
+    font-size: 30px !important;
+    color: orange;
+}
+
+
+h1, h4,#cuatro, #cinco, #seis, #siete, #inicio, #partida, #tipo, #reset{
+    margin: 10px;
+    color:whitesmoke;
+    font-family: 'IM Fell English SC', serif;
+    
+}
+
+#sticky-footer{
+
+    height: 70px !important; 
+    background-color: black;   
+
+}
+
+.margen{
+    margin-left: 10px;
 }
 
 img{

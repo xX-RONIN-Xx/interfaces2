@@ -74,8 +74,9 @@ inicio.addEventListener('click', function () {
 
 canvas.width = canvasW;
 canvas.height = canvasH;
-ctx.fillStyle = "#FFFFFF";
+    ctx.fillStyle = '#98ff96';
 ctx.fillRect(0, 0, canvas.width, canvas.height);
+
 
 function drawTxT() {
     ctx.font = "25pt Verdana";
@@ -373,7 +374,7 @@ function mostrarTablero(casW) {
 
 //pone en blanco too el canvas(luego habra que borrar solo una parte para dividir el tablero de las fichas sin usar)
 function clearCanvas() {
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = '#98ff96';
     ctx.fillRect(0, 0, canvasW, canvasH);
 }
 

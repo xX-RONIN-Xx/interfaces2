@@ -3,14 +3,19 @@ class Tablero {
         this.canvasX = tableroX;
         this.canvasY = tableroY;
         this.tableroW = sizeX;
-        this.tableroH= sizeY;
+        this.tableroH = sizeY;
         this.ctx = ctx;
     }
 
     draw(tableroW, tableroH, canvasW, canvasH, radius) {
-        
+
         let posX = (canvasW / 2) - (tableroW / 2);
-        let posY = (canvasH / 2) - (tableroH / 2);
+        let posY = ((canvasH / 2) - (tableroH / 2));
+        //ctx.beginPath(); //iniciar ruta
+        ctx.shadowOffsetX = 7; //desplazamiento horizontal sombra.
+        ctx.shadowOffsetY = 7; //desplazamiento vertical sombra
+        ctx.shadowColor = "#002800"; //color de sombra
+        ctx.shadowBlur = 15;
         ctx.fillStyle = "#42b825";
         ctx.fillRect(posX, posY, tableroW, tableroH);
         let xAux = posX + 1.5 * radius;

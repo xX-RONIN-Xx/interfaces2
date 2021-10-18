@@ -170,7 +170,7 @@ function contadorNoroeste(fil, col, uFicha) {
 inicio.addEventListener("click", iniciarPartida);
 function iniciarPartida() {
 turno="jugador1";
-    let timeleft = 10;
+    let timeleft = 30;
     let downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
             
@@ -181,7 +181,7 @@ turno="jugador1";
             }
             clearInterval(downloadTimer);
         } else {
-            document.getElementById("countdown").innerHTML = timeleft + "segundos restantes de la partida.";
+            document.getElementById("countdown").innerHTML = timeleft + " segundos restantes de la partida.";
         }
         timeleft -= 1;
     }, 1000);
