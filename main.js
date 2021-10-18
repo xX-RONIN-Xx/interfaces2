@@ -3,7 +3,7 @@
 let canvas = document.querySelector('#canvas');
 let ctx = canvas.getContext("2d");
 let canvasW = 1000;
-let canvasH = 900;
+let canvasH = 850;
 let tableroW;
 let tableroH;
 let casW;
@@ -54,7 +54,12 @@ tipo.addEventListener('click', function () {
     })
 });
 botTablero.forEach(element => {
-    element.addEventListener('click', function () { inicio.disabled = false })
+    element.addEventListener('click', function () { inicio.disabled = false;
+        document.querySelector('#tipo').disabled = true;
+        botTablero.forEach(elemento => {
+            elemento.disabled = true;
+        });
+    })
 });
 
 inicio.addEventListener('click', function () {
@@ -81,8 +86,8 @@ function drawTxT() {
     ctx.font = "25pt Verdana";
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;
-    ctx.strokeText(jugador1, textX - 22, textY, 120);
-    ctx.strokeText(jugador2, textX + 800, textY, 120);
+    ctx.strokeText(jugador1, textX - 22, textY, 250);
+    ctx.strokeText(jugador2, textX + 700, textY, 250);
 }
 
 //drawTxT();
@@ -329,8 +334,8 @@ function crearFichas(cant) {
     let ficha2;
 
     for (let i = 0; i < cant; i++) {
-        ficha = new Ficha(posX, posY + (i * 13) + 200, radius, ctx, imagen1, jugador1, "jugador1");
-        ficha2 = new Ficha(posX + 900, posY + (i * 13) + 200, radius, ctx, imagen2, jugador2, "jugador2");
+        ficha = new Ficha(posX, posY + (i * 11) + 200, radius, ctx, imagen1, jugador1, "jugador1");
+        ficha2 = new Ficha(posX + 900, posY + (i * 11) + 200, radius, ctx, imagen2, jugador2, "jugador2");
         fichas.push(ficha);
         fichas2.push(ficha2);
     }
@@ -408,10 +413,6 @@ function drawGanador(nombre) {
     // Fill with gradient
     ctx.strokeStyle = gradient;
     ctx.strokeText('GANADOR: ' + nombre, 250, 150, 500);
-
-
-
-
 }
 
 
