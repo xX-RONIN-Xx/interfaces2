@@ -64,10 +64,11 @@ inicio.addEventListener('click', function () {
     });
     document.querySelector('#tipo').disabled = true;
     inicio.disabled = true;
-    for(let i=0;i<fichas.length;i++){
+    for (let i = 0; i < fichas.length; i++) {
         fichas[i].setColocada(false);
         fichas2[i].setColocada(false);
     }
+    document.querySelector('#turno').innerHTML="Turno del jugador: "+ jugador1;
 })
 
 
@@ -264,7 +265,7 @@ function onmousedown(e) {
         lastClickedFicha = null;
     }
     let clickFig = findClickedFicha(e.layerX, e.layerY);
-    if ((clickFig != null)&&!clickFig.getColocada()) {
+    if ((clickFig != null) && !clickFig.getColocada()) {
         if (turno == clickFig.getTurno()) {
             lastClickedFicha = clickFig;
             cambiarTurno();
@@ -300,7 +301,15 @@ function onmouseup(e) {
                 nombreGanador = document.getElementById('ganador').innerHTML = ganador.getJugador();
                 drawGanador(nombreGanador);
             }
-        } else { 
+
+            if (turno == "jugador1") {
+                document.querySelector('#turno').innerHTML = "Turno del jugador: " + jugador1;
+            } else {
+                document.querySelector('#turno').innerHTML = "Turno del jugador: " + jugador2;
+            }
+
+
+        } else {
             alert('Soltar la ficha desde arriba del tablero')
             cambiarTurno();
         }
@@ -321,7 +330,7 @@ function crearFichas(cant) {
 
     for (let i = 0; i < cant; i++) {
         ficha = new Ficha(posX, posY + (i * 13) + 200, radius, ctx, imagen1, jugador1, "jugador1");
-        ficha2 = new Ficha(posX + 900, posY + (i * 13) + 200, radius, ctx,imagen2,jugador2,"jugador2");
+        ficha2 = new Ficha(posX + 900, posY + (i * 13) + 200, radius, ctx, imagen2, jugador2, "jugador2");
         fichas.push(ficha);
         fichas2.push(ficha2);
     }

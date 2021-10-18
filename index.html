@@ -17,18 +17,19 @@
 			<h3>Benítez, José Mauricio</h3>
 			<h3>Correa Rocio</h3>
 			<p id="ganador"></p>
-			<p id="jugador1" ></p>
-			<p id="jugador2" ></p>
+			<p id="jugador1" hidden></p>
+			<p id="jugador2" hidden></p>
 		
 			
 			<hr>
-		
+			<div> <h3 id="turno"></h3></div>
+			<div ><h3 id="countdown" >300s tiempo restante del turno</h3></div>
 
 			<hr>
 
 			<div class="botones">
 				
-				<button  class="btn btn-primary" type="button" id="reset" value="Reiniciar">Reiniciar</button>
+				
 				<button  class="btn btn-primary" type="button" id="partida" value="Nueva Partida">Ingrese Nombres</button>
 				<hr>
 				
@@ -42,12 +43,13 @@
 				<button class="Tamtablero btn btn-primary" id="seis" type="button" value="9" onclick="cargarParametros(value);">6 en línea</button>
 				<button class="Tamtablero btn btn-primary" id="siete" type="button" value="10" onclick="cargarParametros(value);">7 en línea</button>
 				<button class="btn btn-success" type="button" id="inicio" value="iniciarPartida">Iniciar Partida</button>
+				<button  class="btn btn-primary" type="button" id="reset" value="Reiniciar">Reiniciar</button>
 			</div>
 
 			
 
 
-			<div ><h3 id="countdown" >300s tiempo restante del turno</h3></div>
+			
 
 		</div>
 		<div>

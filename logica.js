@@ -170,15 +170,18 @@ function contadorNoroeste(fil, col, uFicha) {
 inicio.addEventListener("click", iniciarPartida);
 function iniciarPartida() {
 turno="jugador1";
-    let timeleft = 300;
+    let timeleft = 10;
     let downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
             
-            document.getElementById("countdown").innerHTML = "Finished";
-            alert('programar el fin del juego')
+            document.getElementById("countdown").innerHTML = "Se acabó el tiempo.";
+            for(let i=0;i<fichas.length;i++){
+                fichas[i].setColocada(true);
+                fichas2[i].setColocada(true);
+            }
             clearInterval(downloadTimer);
         } else {
-            document.getElementById("countdown").innerHTML = timeleft + "s tiempo restante del turno";
+            document.getElementById("countdown").innerHTML = timeleft + "segundos restantes de la partida.";
         }
         timeleft -= 1;
     }, 1000);
