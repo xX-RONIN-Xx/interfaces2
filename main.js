@@ -18,6 +18,7 @@ let tamanioCelda = 3 * radius;
 let textX = 50;
 let textY = 50;
 let turno = "jugador1";
+let tiempoDeJuego = 300;
 let matriz = [];
 let jugador1 = document.querySelector('#jugador1').innerHTML;//"Player 1";//document.querySelector('#jugador1').innerHTML;
 let jugador2 = document.querySelector('#jugador2').innerHTML;//"Player 2";
@@ -54,7 +55,8 @@ tipo.addEventListener('click', function () {
     })
 });
 botTablero.forEach(element => {
-    element.addEventListener('click', function () { inicio.disabled = false;
+    element.addEventListener('click', function () {
+        inicio.disabled = false;
         document.querySelector('#tipo').disabled = true;
         botTablero.forEach(elemento => {
             elemento.disabled = true;
@@ -73,7 +75,7 @@ inicio.addEventListener('click', function () {
         fichas[i].setColocada(false);
         fichas2[i].setColocada(false);
     }
-    document.querySelector('#turno').innerHTML="Turno del jugador: "+ jugador1;
+    document.querySelector('#turno').innerHTML = "Turno del jugador: " + jugador1;
 })
 
 
@@ -298,25 +300,46 @@ function onmouseup(e) {
     let nombreGanador;
     if (lastClickedFicha != null) {
         if (((e.layerX > ((canvasW / 2) - (tableroW / 2))) && (e.layerX < ((canvasW / 2) + (tableroW / 2)))) && e.layerY < ((canvasH / 2) - (tableroH / 2) - radius)) {
-            lastClickedFicha.setColocada(true);
+
             col = obtenerColumna(casW, tamanioCelda, e.layerX);
             iLibre = buscarPoslibreCol(col, casW);
-            actualizarMatriz(iLibre, col, lastClickedFicha, casW, radius);
-            ganador = verificarGanador(iLibre, col, lastClickedFicha);
-            if (ganador != null) {
-                nombreGanador = document.getElementById('ganador').innerHTML = ganador.getJugador();
-                drawGanador(nombreGanador);
-            }
+            if (iLibre != -1) {
+                actualizarMatriz(iLibre, col, lastClickedFicha, casW, radius);
+                lastClickedFicha.setColocada(true);
+                ganador = verificarGanador(iLibre, col, lastClickedFicha);
+                if (ganador != null) {
+                    nombreGanador = ganador.getJugador();
+                    countdown.hidden = true;
+                    document.querySelector('#turno').hidden = true;
+                    drawGanador(nombreGanador);
+                }
 
-            if (turno == "jugador1") {
-                document.querySelector('#turno').innerHTML = "Turno del jugador: " + jugador1;
-            } else {
-                document.querySelector('#turno').innerHTML = "Turno del jugador: " + jugador2;
+                if (turno == "jugador1") {
+                    document.querySelector('#turno').innerHTML = "Turno del jugador: " + jugador1;
+                } else {
+                    document.querySelector('#turno').innerHTML = "Turno del jugador: " + jugador2;
+                }
+            }else{
+                swal({
+                    title: "Incorrecto",
+                    text: "Esta columna ya esta completa",
+                    icon: "warning",
+                    button: true,
+                });
+                lastClickedFicha.setPosition(lastClickedFicha.homeX, lastClickedFicha.homeY);
+                drawFigure(casW, cant, imagen1, imagen2);
+                cambiarTurno();
             }
-
 
         } else {
-            alert('Soltar la ficha desde arriba del tablero')
+            swal({
+                title: "Incorrecto",
+                text: "Soltar la ficha desde arriba del tablero!",
+                icon: "warning",
+                button: true,
+            });
+            lastClickedFicha.setPosition(lastClickedFicha.homeX, lastClickedFicha.homeY);
+            drawFigure(casW, cant, imagen1, imagen2);
             cambiarTurno();
         }
 
@@ -331,12 +354,17 @@ let fichas2 = [];
 function crearFichas(cant) {
     let posX = 50;
     let posY = 50;
+    let homeX, homeY;
     let ficha;
     let ficha2;
 
+
+
     for (let i = 0; i < cant; i++) {
-        ficha = new Ficha(posX, posY + (i * 11) + 200, radius, ctx, imagen1, jugador1, "jugador1");
-        ficha2 = new Ficha(posX + 900, posY + (i * 11) + 200, radius, ctx, imagen2, jugador2, "jugador2");
+        homeX = posX;
+        homeY = posY + (i * 11) + 200;
+        ficha = new Ficha(homeX, homeY, posX, posY + (i * 11) + 200, radius, ctx, imagen1, jugador1, "jugador1");
+        ficha2 = new Ficha(homeX + 900, homeY, posX + 900, posY + (i * 11) + 200, radius, ctx, imagen2, jugador2, "jugador2");
         fichas.push(ficha);
         fichas2.push(ficha2);
     }

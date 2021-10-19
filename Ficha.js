@@ -1,6 +1,8 @@
 class Ficha {
 
-    constructor(posX, posY, radius, ctx, source,jugador,turno) {
+    constructor(homeX,homeY,posX, posY, radius, ctx, source,jugador,turno) {
+        this.homeX=homeX;
+        this.homeY=homeY;
         this.ctx = ctx;
         this.posX = posX;
         this.posY = posY;

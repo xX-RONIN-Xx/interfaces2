@@ -44,7 +44,7 @@ function buscarPoslibreCol(col, cantCasillerosw) {
 
 
 //guarda la ficha en la posicion libre encontrada
-function actualizarMatriz(fil, col, ficha, cantCasillerosw, radius) {
+function actualizarMatriz(fil, col, ficha, cantCasillerosw, radius, e) {
     matriz[fil][col] = ficha;
     let x = ((col + 1) * 3 - 1.5) * radius + ((canvasW / 2) - tableroW / 2);
     let y = ((fil + 1) * 3 - 1.5) * radius + ((canvasH / 2) - tableroH / 2);
@@ -58,24 +58,20 @@ function verificarGanador(fil, col, uFicha) {
 
     if ((contadorOeste(fil, col, uFicha) + contadorEste(fil, col, tamMatFila, uFicha) + 1) >= 4) {//mas 1 porque se tiene que contar a si misma
         ganador = true;
-        drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
     if ((contadorSur(fil, col, tamMatCol, uFicha) + 1) == 4) {
         ganador = true;
-        drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
 
     if (((contadorNoreste(fil, col, tamMatFila, uFicha) + (contadorSuroeste(fil, col, tamMatCol, uFicha)) + 1) >= 4)) {
         ganador = true;
-        drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
 
-    if ((contadorEste(fil, col, tamMatCol, tamMatFila, uFicha) + contadorNoroeste(fil, col, uFicha) + 1) >= 4) {
+    if ((contadorSurEste(fil, col, tamMatCol, tamMatFila, uFicha) + contadorNoroeste(fil, col, uFicha) + 1) >= 4) {
         ganador = true;
-        drawFigure(casW, cant, imagen1, imagen2);
         return uFicha;
     }
 
@@ -138,8 +134,7 @@ function contadorSuroeste(fil, col, maxCol, uFicha) {
     return contador;
 }
 
-
-function contadorEste(fil, col, maxCol, maxFila, uFicha) {
+function contadorSurEste(fil, col, maxCol, maxFila, uFicha) {
     fil = fil + 1;
     col = col + 1;
     let contador = 0;
@@ -169,23 +164,30 @@ function contadorNoroeste(fil, col, uFicha) {
 
 inicio.addEventListener("click", iniciarPartida);
 function iniciarPartida() {
-turno="jugador1";
-    let timeleft = 60;
+    turno = "jugador1";
+    let timeleft = tiempoDeJuego;
     let downloadTimer = setInterval(function () {
+        segundos = secondsToString(timeleft)
         if (timeleft <= 0) {
-            
+
             document.getElementById("countdown").innerHTML = "Se acabó el tiempo.";
-            for(let i=0;i<fichas.length;i++){
+            for (let i = 0; i < fichas.length; i++) {
                 fichas[i].setColocada(true);
                 fichas2[i].setColocada(true);
             }
             clearInterval(downloadTimer);
         } else {
-            document.getElementById("countdown").innerHTML = timeleft + " segundos restantes de la partida.";
+            document.getElementById("countdown").innerHTML = segundos + " tiempo restante de la partida.";
         }
         timeleft -= 1;
     }, 1000);
 
 }
-
+function secondsToString(seconds) {
+    let minute = Math.floor((seconds / 60) % 60);
+    minute = (minute < 10) ? '0' + minute : minute;
+    let second = seconds % 60;
+    second = (second < 10) ? '0' + second : second;
+    return minute + ':' + second;
+}
 
