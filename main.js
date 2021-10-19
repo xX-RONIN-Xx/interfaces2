@@ -307,7 +307,7 @@ function onmouseup(e) {
                 lastClickedFicha.setColocada(true);
                 ganador = verificarGanador(iLibre, col, lastClickedFicha);
                 if (ganador != null) {
-                    nombreGanador = document.getElementById('ganador').innerHTML = ganador.getJugador();
+                    nombreGanador = ganador.getJugador();
                     countdown.hidden = true;
                     document.querySelector('#turno').hidden = true;
                     drawGanador(nombreGanador);
@@ -356,6 +356,8 @@ function crearFichas(cant) {
     let homeX, homeY;
     let ficha;
     let ficha2;
+
+
 
     for (let i = 0; i < cant; i++) {
         homeX = posX;
