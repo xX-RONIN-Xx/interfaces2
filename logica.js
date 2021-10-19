@@ -1,4 +1,3 @@
-
 //obtiene la columna correspondiente al lugar donde se solto la ficha
 function obtenerColumna(cantCasillerosw, tamanioCelda, x) {
     let posT = (canvasW / 2) - (tableroW / 2);
@@ -9,9 +8,7 @@ function obtenerColumna(cantCasillerosw, tamanioCelda, x) {
         }
         inicioCelda += tamanioCelda;
     }
-    //por lo demas error
 }
-
 
 //cantidad de casilleros a lo ancho (tablero) col
 //genera una matriz vacia
@@ -26,20 +23,18 @@ function generarMatriz(col) {
         for (let j = 0; j < col; j++) {
             matriz[i][j] = 'vacio';
         }
-
     }
 }
-
 
 //en base a la columna encontrada devuelve la fila correspondiente al casillero libre
 function buscarPoslibreCol(col, cantCasillerosw) {
     let filas = cantCasillerosw - 1;
     for (let i = filas.valueOf() - 1; i >= 0; i--) {
         if ((matriz[i][col]) == 'vacio') {
-            return i;//devuelve la fila en la cual hay un casillero libre, la columna ya la tengo
+            return i; //devuelve la fila en la cual hay un casillero libre, la columna ya la tengo
         }
     }
-    return -1;//si toda la columna esta llena devuelve -1
+    return -1; //si toda la columna esta llena devuelve -1
 }
 
 
@@ -51,12 +46,12 @@ function actualizarMatriz(fil, col, ficha, cantCasillerosw, radius, e) {
     ficha.setPosition(x, y);
     drawFigure(cantCasillerosw, cant, imagen1, imagen2);
 }
-
+//verifica si hay 4 en linea en alguna posicion
 function verificarGanador(fil, col, uFicha) {
     let tamMatFila = matriz[fil].length;
     let tamMatCol = matriz.length;
 
-    if ((contadorOeste(fil, col, uFicha) + contadorEste(fil, col, tamMatFila, uFicha) + 1) >= 4) {//mas 1 porque se tiene que contar a si misma
+    if ((contadorOeste(fil, col, uFicha) + contadorEste(fil, col, tamMatFila, uFicha) + 1) >= 4) { //mas 1 porque se tiene que contar a si misma
         ganador = true;
         return uFicha;
     }
@@ -82,8 +77,7 @@ function contadorOeste(fil, col, uFicha) {
     let contador = 0;
     while (col >= 0 && (matriz[fil][col] != 'vacio') && ((matriz[fil][col].getSource()) == uFicha.getSource())) {
         col -= 1;
-        contador += 1;
-        ;
+        contador += 1;;
     }
     return contador;
 }
@@ -93,12 +87,10 @@ function contadorEste(fil, col, maxFila, uFicha) {
     let contador = 0;
     while (col < maxFila && (matriz[fil][col] != 'vacio') && (matriz[fil][col].getSource() == uFicha.getSource())) {
         col += 1;
-        contador += 1;
-        ;
+        contador += 1;;
     }
     return contador;
 }
-
 
 function contadorNoreste(fil, col, maxFila, uFicha) {
     fil = fil - 1;
@@ -157,16 +149,13 @@ function contadorNoroeste(fil, col, uFicha) {
     }
     return contador;
 }
-
-
-
-
-
+//inicio de partida y cuenta regresiva
 inicio.addEventListener("click", iniciarPartida);
+
 function iniciarPartida() {
     turno = "jugador1";
     let timeleft = tiempoDeJuego;
-    let downloadTimer = setInterval(function () {
+    let downloadTimer = setInterval(function() {
         segundos = secondsToString(timeleft)
         if (timeleft <= 0) {
 
@@ -183,6 +172,7 @@ function iniciarPartida() {
     }, 1000);
 
 }
+//transforma los segundos a formato mm:ss
 function secondsToString(seconds) {
     let minute = Math.floor((seconds / 60) % 60);
     minute = (minute < 10) ? '0' + minute : minute;
@@ -190,4 +180,3 @@ function secondsToString(seconds) {
     second = (second < 10) ? '0' + second : second;
     return minute + ':' + second;
 }
-

@@ -8,7 +8,7 @@
     background-color: rgb(33, 48, 37);
 }
 
-.integrantes{
+.integrantes {
     width: 500px;
 }
 
@@ -19,85 +19,89 @@
     flex-direction: column;
 }
 
-.btn-primary{
-
+.btn-primary {
     background-color: turquoise !important;
     color: rgb(0, 8, 8) !important;
     font-size: 25px !important;
     padding: 0px !important;
 }
 
-.btn-success{
-  
-    background-color:orange !important;
+.btn-success {
+    background-color: orange !important;
     color: #000 !important;
     font-size: 25px !important;
     padding: 0px !important;
-
 }
 
-#countdown{
-
+#countdown {
     font-size: 30px !important;
     color: orange;
 }
 
-
-h1, h4,#cuatro, #cinco, #seis, #siete, #inicio, #partida, #tipo, #reset{
+h1,
+h4,
+#cuatro,
+#cinco,
+#seis,
+#siete,
+#inicio,
+#partida,
+#tipo,
+#reset {
     margin: 10px;
-    color:whitesmoke;
+    color: whitesmoke;
     font-family: 'IM Fell English SC', serif;
-    
 }
 
-#sticky-footer{
-
-    height: 70px !important; 
-    background-color: black;   
-
+#sticky-footer {
+    height: 70px !important;
+    background-color: black;
 }
 
-.margen{
+.margen {
     margin-left: 10px;
 }
 
-img{
+img {
     border-radius: 50%;
 }
 
-.casino{
+
+/*estilo de fichas*/
+
+.casino {
     background-image: url(../img/fichaAzul.png);
-   background-repeat: no-repeat;
+    background-repeat: no-repeat;
     display: block;
-     width: 60px;
-     height: 60px;
-     border-radius: 50%;
-   }
-   
-   .cartas{
-      background-image: url(../img/cartas.png);
-      background-repeat: no-repeat; 
-     display: block;
-     width: 62px;
-     height: 62px;
-     border-radius: 50%;
-   }
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
 
-   .color{
+.cartas {
+    background-image: url(../img/cartas.png);
+    background-repeat: no-repeat;
+    display: block;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+}
+
+.color {
     background-image: url(../img/fichaVerde.png);
-    background-repeat: no-repeat; 
-   display: block;
-   width: 62px;
-   height: 60px;
-   border-radius: 50%;
- }
+    background-repeat: no-repeat;
+    display: block;
+    width: 62px;
+    height: 60px;
+    border-radius: 50%;
+}
 
-   .swal-footer {
-     text-align: center; 
+.swal-footer {
+    text-align: center;
     padding-top: 13px;
     margin-top: 13px;
     padding: 13px 16px;
     border-radius: inherit;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-} 
+}
