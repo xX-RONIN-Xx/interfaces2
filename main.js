@@ -18,6 +18,7 @@ let tamanioCelda = 3 * radius;
 let textX = 50;
 let textY = 50;
 let turno = "jugador1";
+let tiempoDeJuego=300;
 let matriz = [];
 let jugador1 = document.querySelector('#jugador1').innerHTML;//"Player 1";//document.querySelector('#jugador1').innerHTML;
 let jugador2 = document.querySelector('#jugador2').innerHTML;//"Player 2";
