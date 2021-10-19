@@ -170,7 +170,7 @@ function contadorNoroeste(fil, col, uFicha) {
 inicio.addEventListener("click", iniciarPartida);
 function iniciarPartida() {
 turno="jugador1";
-    let timeleft = 30;
+    let timeleft = 60;
     let downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
             
