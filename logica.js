@@ -146,8 +146,6 @@ function contadorSurEste(fil, col, maxCol, maxFila, uFicha) {
     return contador;
 }
 
-
-
 function contadorNoroeste(fil, col, uFicha) {
     fil = fil - 1;
     col = col - 1;
