@@ -18,13 +18,14 @@ let tamanioCelda = 3 * radius;
 let textX = 50;
 let textY = 50;
 let turno = "jugador1";
-let tiempoDeJuego = 300;
+let tiempoDeJuego = 600;
 let matriz = [];
 let jugador1 = document.querySelector('#jugador1').innerHTML;
 let jugador2 = document.querySelector('#jugador2').innerHTML;
 
 document.querySelector('#reset').addEventListener('click', function() {
-    swal("Desea iniciar una nueva partida? ", {
+    swal("", {
+            title: "Desea iniciar una nueva partida?",
             buttons: ["cancel", true],
         })
         .then((value) => {
@@ -125,7 +126,8 @@ function cargarParametros(value) {
 partida.addEventListener("click", borrarPartida);
 
 function borrarPartida() {
-    swal("Ingrese nombre del Jugador 1: ", {
+    swal("", {
+            title: "Ingrese nombre del Jugador 1: ",
             closeOnClickOutside: false,
             content: "input",
         })
@@ -136,7 +138,8 @@ function borrarPartida() {
             } else {
                 jugador1 = value;
             }
-            swal("Ingrese nombre del Jugador 2: ", {
+            swal("", {
+                    title: "Ingrese nombre del Jugador 2: ",
                     closeOnClickOutside: false,
                     content: "input",
                 })
@@ -321,7 +324,7 @@ function onmouseup(e) {
         } else {
             swal({
                 title: "Incorrecto",
-                text: "Soltar la ficha desde arriba del tablero!",
+                text: "Soltar la ficha arriba del tablero!",
                 icon: "warning",
                 button: true,
             });
